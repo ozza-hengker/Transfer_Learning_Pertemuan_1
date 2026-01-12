@@ -25,6 +25,107 @@ Tujuan utama dari pertemuan ini adalah memastikan seluruh environment robotika s
 
 ---
 
+## 🛠️ Kebutuhan Awal (Prerequisites)
+
+Sebelum masuk ke instalasi ROS 2, **Ubuntu harus benar-benar siap pakai**. Bagian ini menjelaskan proses **dari nol**: apa saja yang dibutuhkan hingga Ubuntu siap digunakan di VMware.
+
+---
+
+## 💿 Instalasi Ubuntu di VMware (Dari Nol)
+
+### 1️⃣ Perangkat & File yang Dibutuhkan
+
+#### Hardware Minimum
+
+* Laptop / PC (64-bit)
+* RAM minimal 8 GB (4 GB masih bisa, tapi ngos-ngosan)
+* Storage kosong minimal 50 GB
+* Virtualization aktif di BIOS (Intel VT-x / AMD-V)
+
+#### Software
+
+* **VMware Workstation** (Windows / Linux)
+* **File ISO Ubuntu 22.04 LTS**
+
+> Kenapa 22.04?
+> Karena **ROS 2 Humble hanya stabil di Ubuntu 22.04 (Jammy)**. Versi lain bikin hidup tidak tenang.
+
+---
+
+### 2️⃣ Install VMware Workstation
+
+1. Download VMware Workstation Player / Pro dari website resmi VMware
+2. Install seperti aplikasi biasa
+3. Restart PC jika diminta
+
+Pastikan VMware bisa dibuka tanpa error.
+
+---
+
+### 3️⃣ Buat Virtual Machine Baru
+
+1. Buka **VMware** → klik **Create a New Virtual Machine**
+2. Pilih **Installer disc image file (iso)**
+3. Pilih file **Ubuntu 22.04 LTS (.iso)**
+4. Klik **Next**
+
+Jika muncul menu *Easy Install*, biarkan aktif.
+
+---
+
+### 4️⃣ Konfigurasi Virtual Machine
+
+#### Rekomendasi Setting
+
+* **Guest OS**: Linux → Ubuntu 64-bit
+* **CPU**: 2 core atau lebih
+* **RAM**: 4 GB minimum (8 GB disarankan)
+* **Disk**: 40–50 GB (Single file lebih aman)
+* **Network**: NAT
+
+Klik **Finish** untuk membuat VM.
+
+---
+
+### 5️⃣ Proses Instalasi Ubuntu
+
+1. Jalankan VM
+2. Tunggu installer Ubuntu muncul
+3. Pilih:
+
+   * Language: English
+   * Keyboard: English (US)
+4. Pilih **Normal Installation**
+5. Centang **Install third-party software**
+6. Pilih **Erase disk and install Ubuntu**
+
+   * (Ini hanya disk virtual, aman)
+7. Atur:
+
+   * Timezone
+   * Username & Password
+
+Tunggu hingga instalasi selesai (±10–20 menit).
+
+---
+
+### 6️⃣ First Boot & Setup Awal Ubuntu
+
+Setelah masuk desktop Ubuntu:
+
+1. Buka **Terminal** (`Ctrl + Alt + T`)
+2. Update sistem:
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+3. (Opsional tapi disarankan) Install VMware Tools jika belum otomatis
+
+Ubuntu sekarang **siap dipakai** untuk instalasi ROS 2.
+
+---
+
 ## 🛠️ Persiapan Awal
 
 1. Pastikan Ubuntu sudah berjalan di VMware.
@@ -133,6 +234,66 @@ Jika semua poin di atas terpenuhi, maka environment ROS 2 di VMware **siap digun
 * Gunakan Ubuntu LTS untuk stabilitas jangka panjang
 * Pastikan koneksi internet VM stabil saat instalasi
 * Jangan lanjut ke materi berikutnya sebelum tahap ini berhasil
+
+---
+
+---
+
+## 📤 Cara Push Project ke GitHub
+
+Langkah ini penting agar hasil setup dan progress kamu **terdokumentasi rapi**.
+
+### 1️⃣ Install Git
+
+```bash
+sudo apt install git -y
+```
+
+Cek instalasi:
+
+```bash
+git --version
+```
+
+### 2️⃣ Konfigurasi Identitas Git
+
+```bash
+git config --global user.name "Nama Kamu"
+git config --global user.email "emailkamu@email.com"
+```
+
+### 3️⃣ Inisialisasi Repository Lokal
+
+Masuk ke folder project:
+
+```bash
+cd nama_folder_project
+```
+
+Lalu:
+
+```bash
+git init
+git add .
+git commit -m "Initial commit - Transfer Learning Pertemuan 1"
+```
+
+### 4️⃣ Buat Repository di GitHub
+
+* Login ke GitHub
+* Klik **New Repository**
+* Isi nama repository (contoh: `transfer-learning-motion-amarine`)
+* Jangan centang README (karena sudah ada lokal)
+
+### 5️⃣ Hubungkan & Push ke GitHub
+
+```bash
+git branch -M main
+git remote add origin https://github.com/username/nama-repo.git
+git push -u origin main
+```
+
+Jika berhasil, project kamu sudah online 🚀
 
 ---
 
