@@ -239,59 +239,121 @@ Jika semua poin di atas terpenuhi, maka environment ROS 2 di VMware **siap digun
 
 ---
 
-## 📤 Cara Push Project ke GitHub
+## 📤 Implementasi: Push Project ROS 2 (Contoh: Turtleboat)
 
-Langkah ini penting agar hasil setup dan progress kamu **terdokumentasi rapi**.
+Bagian ini mencontohkan **project ROS 2 nyata** bernama `turtleboat`, lalu bagaimana cara **menyimpannya ke GitHub dengan struktur yang benar**.
 
-### 1️⃣ Install Git
+---
 
-```bash
-sudo apt install git -y
+## 🗂️ Contoh Struktur Project ROS 2
+
+Misalkan kita membuat workspace ROS 2 bernama `ros2_ws` dan package `turtleboat`:
+
+```text
+ros2_ws/
+├── src/
+│   └── turtleboat/
+│       ├── package.xml
+│       ├── setup.py
+│       ├── setup.cfg
+│       ├── resource/
+│       │   └── turtleboat
+│       ├── turtleboat/
+│       │   └── turtleboat_node.py
+│       └── README.md
+└── README.md
 ```
 
-Cek instalasi:
+> Yang di-push ke GitHub adalah **folder workspace atau package**, bukan hasil build.
+
+---
+
+## 1️⃣ Membuat Workspace & Package (Contoh)
 
 ```bash
-git --version
+mkdir -p ~/ros2_ws/src
+cd ~/ros2_ws/src
+
+ros2 pkg create turtleboat --build-type ament_python
 ```
 
-### 2️⃣ Konfigurasi Identitas Git
+Kembali ke workspace:
 
 ```bash
-git config --global user.name "Nama Kamu"
-git config --global user.email "emailkamu@email.com"
+cd ~/ros2_ws
+colcon build
+source install/setup.bash
 ```
 
-### 3️⃣ Inisialisasi Repository Lokal
-
-Masuk ke folder project:
+Pastikan package bisa dikenali:
 
 ```bash
-cd nama_folder_project
+ros2 pkg list | grep turtleboat
 ```
 
-Lalu:
+---
+
+## 2️⃣ Inisialisasi Git pada Project
+
+Masuk ke folder workspace:
+
+```bash
+cd ~/ros2_ws
+```
+
+Buat file `.gitignore`:
+
+```bash
+nano .gitignore
+```
+
+Isi dengan:
+
+```text
+build/
+install/
+log/
+__pycache__/
+*.pyc
+```
+
+Simpan, lalu:
 
 ```bash
 git init
 git add .
-git commit -m "Initial commit - Transfer Learning Pertemuan 1"
+git commit -m "Initial commit - turtleboat ROS2 project"
 ```
 
-### 4️⃣ Buat Repository di GitHub
+---
 
-* Login ke GitHub
-* Klik **New Repository**
-* Isi nama repository (contoh: `transfer-learning-motion-amarine`)
-* Jangan centang README (karena sudah ada lokal)
+## 3️⃣ Buat Repository di GitHub
 
-### 5️⃣ Hubungkan & Push ke GitHub
+1. Login ke GitHub
+2. Klik **New Repository**
+3. Nama repo contoh: `turtleboat-ros2`
+4. Jangan centang README atau .gitignore
+
+---
+
+## 4️⃣ Hubungkan & Push ke GitHub
 
 ```bash
 git branch -M main
-git remote add origin https://github.com/username/nama-repo.git
+git remote add origin https://github.com/username/turtleboat-ros2.git
 git push -u origin main
 ```
+
+Jika berhasil, seluruh project ROS 2 kamu sekarang **tersimpan aman di GitHub**.
+
+---
+
+## 5️⃣ Best Practice (WAJIB DIPATUHI)
+
+* ❌ Jangan push folder `build/`, `install/`, `log/`
+* ✅ Push hanya source code
+* ✅ Satu repo = satu project utama
+* ✅ README wajib menjelaskan cara build & run
 
 Jika berhasil, project kamu sudah online 🚀
 
