@@ -343,7 +343,7 @@ git branch -M main
 git remote add origin https://github.com/username/turtleboat-ros2.git
 git push -u origin main
 ```
-##Jika langkah tersebut tidak bisa kalian bisa menggunakan perintah seperti ini
+## Jika langkah tersebut tidak bisa kalian bisa menggunakan perintah seperti ini
 
 ```bash
 git push https://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@github.com/ozza-hengker/Transfer_Learning.git
