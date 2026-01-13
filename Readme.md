@@ -343,13 +343,14 @@ git branch -M main
 git remote add origin https://github.com/username/turtleboat-ros2.git
 git push -u origin main
 ```
+*Jika langkah tersebut tidak bisa kalian bisa menggunakan perintah seperti ini
+
 ```bash
-//Jika langkah tersebut tidak bisa kalian bisa menggunakan perintah seperti ini
 git push https://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@github.com/ozza-hengker/Transfer_Learning.git
-ozza-hengker => ganti jadi username kalian
-Transfer_Learning.git => ganti jadi nama repo kalian
-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 => Key yang bisa di dapat dari github
 ```
+*ozza-hengker => ganti jadi username kalian
+*Transfer_Learning.git => ganti jadi nama repo kalian
+*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 => Key Access yang bisa di dapat dari github
 
 Jika berhasil, seluruh project ROS 2 kamu sekarang **tersimpan aman di GitHub**.
 
